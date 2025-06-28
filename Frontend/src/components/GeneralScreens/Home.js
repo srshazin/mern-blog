@@ -9,6 +9,7 @@ import Pagination from "./Pagination";
 import "../../Css/Home.css"
 
 import { useNavigate } from "react-router-dom"
+import { getAPIUri } from "../../utils";
 const Home = () => {
   const search = useLocation().search
   const searchKey = new URLSearchParams(search).get('search')
@@ -25,7 +26,7 @@ const Home = () => {
       setLoading(true)
       try {
 
-        const { data } = await axios.get(`/story/getAllStories?search=${searchKey || ""}&page=${page}`)
+        const { data } = await axios.get(getAPIUri(`/story/getAllStories?search=${searchKey || ""}&page=${page}`))
 
         if (searchKey) {
           navigate({

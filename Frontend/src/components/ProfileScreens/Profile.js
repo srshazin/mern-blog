@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Loader from "../GeneralScreens/Loader";
 import { AuthContext } from '../../Context/AuthContext';
 import { FiArrowLeft } from 'react-icons/fi'
+import { getAPIUri } from '../../utils';
 
 const Profile = () => {
     const { config } = useContext(AuthContext)
@@ -29,7 +30,7 @@ const Profile = () => {
             setLoading(true)
 
             try {
-                const { data } = await axios.get("/user/profile", config)
+                const { data } = await axios.get(getAPIUri("/user/profile"), config)
 
                 setUser(data.data)
 

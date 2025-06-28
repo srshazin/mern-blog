@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import StoryComments from './StoryComments';
 import axios from 'axios';
 import AddComment from './AddComment';
+import { getAPIUri } from '../../utils';
 
 const CommentSidebar = ({ slug, sidebarShowStatus, setSidebarShowStatus, activeUser }) => {
 
@@ -17,7 +18,7 @@ const CommentSidebar = ({ slug, sidebarShowStatus, setSidebarShowStatus, activeU
 
   const getStoryComments = async () => {
     try {
-      const { data } = await axios.get(`/comment/${slug}/getAllComment`)
+      const { data } = await axios.get(getAPIUri(`/comment/${slug}/getAllComment`))
       setCommentList(data.data)
       setCount(data.count)
     }

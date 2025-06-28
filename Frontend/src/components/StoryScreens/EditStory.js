@@ -7,6 +7,7 @@ import { useNavigate, useParams, Link } from 'react-router-dom';
 import { AuthContext } from "../../Context/AuthContext";
 import { AiOutlineUpload } from 'react-icons/ai'
 import '../../Css/EditStory.css'
+import { getAPIUri } from '../../utils';
 
 const EditStory = () => {
     const { config } = useContext(AuthContext)
@@ -27,7 +28,7 @@ const EditStory = () => {
         const getStoryInfo = async () => {
             setLoading(true)
             try {
-                const { data } = await axios.get(`/story/editStory/${slug}`, config)
+                const { data } = await axios.get(getAPIUri(`/story/editStory/${slug}`), config)
                 setStory(data.data)
                 setTitle(data.data.title)
                 setContent(data.data.content)
@@ -51,7 +52,7 @@ const EditStory = () => {
         formdata.append("previousImage", previousImage)
 
         try {
-            const { data } = await axios.put(`/story/${slug}/edit`, formdata, config)
+            const { data } = await axios.put(getAPIUri(`/story/${slug}/edit`), formdata, config)
 
             setSuccess('Edit Story successfully ')
 

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import "../../Css/ResetPasswordScreen.css"
+import { getAPIUri } from "../../utils";
 
 const ResetPasswordScreen = () => {
   const [password, setPassword] = useState("");
@@ -25,7 +26,7 @@ const ResetPasswordScreen = () => {
 
     try {
       const { data } = await axios.put(
-        `/auth/resetpassword?resetPasswordToken=${token}`,
+        getAPIUri(`/auth/resetpassword?resetPasswordToken=${token}`),
         {
           password,
         }

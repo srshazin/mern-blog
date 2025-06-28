@@ -7,6 +7,7 @@ import {
 import { BsThreeDots } from 'react-icons/bs'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { getAPIUri } from '../../utils';
 
 const CommentItem = ({ comment, activeUser }) => {
     const navigate = useNavigate()
@@ -19,7 +20,7 @@ const CommentItem = ({ comment, activeUser }) => {
 
             const comment_id = comment._id
             try {
-                const { data } = await axios.post(`/comment/${comment_id}/getCommentLikeStatus`, { activeUser }, {
+                const { data } = await axios.post(getAPIUri(`/comment/${comment_id}/getCommentLikeStatus`), { activeUser }, {
                     headers: {
                         "Content-Type": "application/json",
                         authorization: `Bearer ${localStorage.getItem("authToken")}`,
@@ -50,7 +51,7 @@ const CommentItem = ({ comment, activeUser }) => {
         const comment_id = comment._id
 
         try {
-            const { data } = await axios.post(`/comment/${comment_id}/like`, { activeUser }, {
+            const { data } = await axios.post(getAPIUri(`/comment/${comment_id}/like`), { activeUser }, {
                 headers: {
                     "Content-Type": "application/json",
                     authorization: `Bearer ${localStorage.getItem("authToken")}`,

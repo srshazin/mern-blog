@@ -5,6 +5,7 @@ import { BsShieldCheck, BsCheckAll } from 'react-icons/bs'
 import { IoAdd } from 'react-icons/io5'
 import { useNavigate } from 'react-router-dom';
 import '../../Css/AddComment.css'
+import { getAPIUri } from '../../utils';
 
 const AddComment = ({ setSidebarShowStatus, slug, getStoryComments, activeUser, count }) => {
 
@@ -21,7 +22,7 @@ const AddComment = ({ setSidebarShowStatus, slug, getStoryComments, activeUser, 
 
         e.preventDefault();
         try {
-            await axios.post(`/comment/${slug}/addComment`, { content, star }, {
+            await axios.post(getAPIUri(`/comment/${slug}/addComment`), { content, star }, {
                 headers: {
                     "Content-Type": "application/json",
                     authorization: `Bearer ${localStorage.getItem("authToken")}`,

@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import "../../Css/Login.css"
 import { Link, useNavigate } from "react-router-dom";
+import { getAPIUri } from "../../utils";
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,7 +15,7 @@ const LoginScreen = () => {
 
     try {
       const { data } = await axios.post(
-        "/auth/login",
+        getAPIUri("/auth/login"),
         { email, password }
       );
       localStorage.setItem("authToken", data.token);
